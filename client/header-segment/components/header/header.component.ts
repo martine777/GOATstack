@@ -16,7 +16,7 @@ declare let Power0: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, AfterViewInit {
 	
 	@ViewChild('menu') m: ElementRef;
 
