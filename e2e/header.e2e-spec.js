@@ -28,9 +28,11 @@ describe('Header E2E Tests', function () {
   });
 
   it('should display login form on click', function (done) {
-    browser.wait(EC.elementToBeClickable(element(by.css('.nav-trigger'))), 2000); 
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        browser.wait(EC.elementToBeClickable(element(by.css('.nav-trigger'))), 2000); 
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);
+    }
     element(by.css('#sign-in-btn')).click();
     browser.sleep(1050);
     expect(element(by.css('#login_email')).isPresent()).toBeTruthy();
@@ -55,8 +57,10 @@ describe('Header E2E Tests', function () {
   });
 
   it('should throw "password is not correct" login error', function (done) { 
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-in-btn')).click();
     browser.sleep(1050);
     element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
@@ -69,8 +73,10 @@ describe('Header E2E Tests', function () {
   });
 
   it('should login without errors', function (done) {
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-in-btn')).click();
     browser.sleep(1050);
     element(by.css('#login_email-input')).clear().sendKeys('test@test.com');
@@ -81,16 +87,20 @@ describe('Header E2E Tests', function () {
 
     expect(element(by.css('#welcome-user')).isPresent()).toBeTruthy();
     expect(element(by.css('#welcome-user')).getText()).toEqual('Welcome, test');
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-out-btn')).click();
     done();
   });
 
   it('should display register form when clicked', function (done) {
-    browser.sleep(1000);
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        browser.sleep(1000);
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-up-btn')).click();
     browser.sleep(1050);
     expect(element(by.css('#back-btn2')).isPresent()).toBeTruthy();
@@ -118,8 +128,10 @@ describe('Header E2E Tests', function () {
   });
 
   it('should display "email address is already in use" register error', function (done) {
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-up-btn')).click();
     browser.sleep(1050);
     element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
@@ -135,8 +147,10 @@ describe('Header E2E Tests', function () {
   });
 
   it('should display "passwords are not the same" register error', function (done) {
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-up-btn')).click();
     browser.sleep(1050);
     element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
@@ -152,8 +166,10 @@ describe('Header E2E Tests', function () {
   });
 
   it('should login as newly registered user', function (done) {
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-up-btn')).click();
     browser.sleep(1050);
     element(by.css('#signup_username-input')).clear().sendKeys('testUserName');
@@ -166,8 +182,10 @@ describe('Header E2E Tests', function () {
 
     expect(element(by.css('#welcome-user')).isPresent()).toBeTruthy();
     expect(element(by.css('#welcome-user')).getText()).toEqual('Welcome, testUserName');
-    element(by.css('.nav-trigger')).click();
-    browser.sleep(1050); 
+    if (!element(by.css('.nav-trigger.hidden')).isPresent()) {
+        element(by.css('.nav-trigger')).click();
+        browser.sleep(1050);    
+    }
     element(by.css('#sign-out-btn')).click();
     done();
   });
