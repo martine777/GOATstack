@@ -1,21 +1,13 @@
 // importing modules the es6 way
-import routes from './routes';
 import config from '../config';
 
-import * as mongoose from 'mongoose';
 import * as path from 'path';
-import * as passport from 'passport';
 
 // Some modules still need to be imported via node
 let express = require('express'),
   fs = require('graceful-fs'),
-  chalk = require('chalk'),
   morgan = require('morgan'),
-  bodyParser = require('body-parser'),
-  methodOverride = require('method-override'),
-  cookieParser = require('cookie-parser'),
-  session = require('express-session'),
-  MongoStore = require('connect-mongo')(session);
+  bodyParser = require('body-parser');
 
 // let webpack = require('webpack');
 // let webpackConfig = require('../webpack.config')('dev');
@@ -38,10 +30,6 @@ function expressInit(app) {
     extended: false
   }));
   app.use(bodyParser.json());
-  app.use(methodOverride());
-  app.use(cookieParser());
-  // Initialize passport and passport session
-  app.use(passport.initialize());
 
   //initialize morgan express logger
   // NOTE: all node and custom module requests
@@ -51,30 +39,15 @@ function expressInit(app) {
     }));
   }
 
-  app.use(session({
-    secret: config.sessionSecret,
-    saveUninitialized: true,
-    resave: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      db: 'dreams'
-    })
-  }));
-
-  //sets the routes for all the API queries
-  routes(app);
-
   const dist = fs.existsSync('dist');
 
   //exposes the client and node_modules folders to the client for file serving when client queries "/"
   app.use('/node_modules', express.static('node_modules'));
-  app.use('/custom_modules', express.static('custom_modules'));
   app.use(express.static(`${ dist ? 'dist/client' : 'client' }`));
   app.use('/public', express.static('public'));
 
   //exposes the client and node_modules folders to the client for file serving when client queries anything, * is a wildcard
   app.use('*', express.static('node_modules'));
-  app.use('*', express.static('custom_modules'));
   app.use('*', express.static(`${ dist ? 'dist/client' : 'client' }`));
   app.use('*', express.static('public'));
 

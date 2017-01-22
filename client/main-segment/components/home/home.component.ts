@@ -1,4 +1,4 @@
-import { Component, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
@@ -10,8 +10,4 @@ import { Observable } from 'rxjs/Observable';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HomeComponent { 
-
-  constructor() { }
-
-}
+export class HomeComponent {}

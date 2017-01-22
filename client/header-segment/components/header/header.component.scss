@@ -81,20 +81,6 @@ a:hover {
     color: white;
 }
 
-#welcome-user {
-    position: absolute;
-    top: 11px;
-    right: 103px;
-}
-
-.user-mobile#welcome-user {
-    position: relative;
-    float: right;
-    margin-right: 2%;
-    top: 11px;    
-    right: 0;
-}
-
 
 @media (max-width: 550px) {
     .app-title {
@@ -102,9 +88,6 @@ a:hover {
     }
     .app-title h1 {
         display: none;
-    }
-    #welcome-user {
-
     }
 
     #logo {

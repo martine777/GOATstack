@@ -13,7 +13,6 @@ import 'rxjs';
 import 'ng2-redux';
 
 import 'lodash';
-import 'socket.io-client';
 import 'ng2-cookies/ng2-cookies';
 
 // Other vendors for example jQuery, Lodash or Bootstrap
