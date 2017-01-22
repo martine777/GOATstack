@@ -95,7 +95,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 		  .to(links[1], 0.5, { x: 0 }, '-=0.3')
 		  .to(links[4], 0.5, { x: 0 }, '-=0.3')
 		  .to(links[2], 0.5, { x: 0 }, '-=0.5')
-		  .to(links[3], 0.5, { x: 0 }, '-=0.3')
+		  .to(links[3], 0.5, { x: 0 }, '-=0.3');
 	}
 
 
