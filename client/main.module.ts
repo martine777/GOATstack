@@ -56,7 +56,6 @@ Components
 import { HeaderComponent }                           from './header-segment/components/header/header.component';
 import { HomeComponent }                             from './main-segment/components/home/home.component';
 import { Four0FourComponent }                        from './main-segment/components/404/four0four.component';
-import { UserProfileComponent }                      from './main-segment/components/user-profile/user-profile.component';
 import { FooterComponent }                           from './footer-segment/components/footer/footer.component';
 // DO NOT REMOVE: template main.module imports
 
@@ -80,10 +79,6 @@ Services
 //user created services
 import { ErrorHandlerActions }                       from './main-segment/actions/error/errorHandler.actions';
 import { SEOActions }                                from './main-segment/actions/seo/seo.actions';
-import { SocketService }                             from './main-segment/services/socketio/socketio.service';
-import { HttpIntercept }                             from './main-segment/services/auth/auth.service';
-import { UserService }                               from './main-segment/services/user/user.service';
-
 //Angular and 3rd party serices
 import { Cookie }                                    from 'ng2-cookies/ng2-cookies';
 
@@ -117,13 +112,6 @@ import { IAppState, rootReducer, enhancers }         from './store/index';
 let createLogger = require('redux-logger');
 
 /*
---------------------------------------------------
-exported functions for AoT
---------------------------------------------------
-*/
-export function httpFactory(backend: XHRBackend, defaultOptions: RequestOptions) {
-  return new HttpIntercept(backend, defaultOptions);
-}
 
 /*
 --------------------------------------------------
@@ -151,20 +139,13 @@ NgModule
     FooterComponent,
     HomeComponent,
     Four0FourComponent,
-    UserProfileComponent,
     // DO NOT REMOVE: template declarations
   ],
   //providers: this object imports all necessary services into the module
   providers: [
-    {
-      provide: Http,
-      useFactory: httpFactory,
-      deps: [XHRBackend, RequestOptions]
-    },
+    Http,
     ErrorHandlerActions,
     SEOActions,
-    SocketService,
-    UserService,
     Cookie,
     { provide: DevToolsExtension, useClass: DevToolsExtension }
   ],

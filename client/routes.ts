@@ -3,7 +3,6 @@ import { Routes, RouterModule }   from '@angular/router';
 import { ModuleWithProviders }   from '@angular/core';
 
 //import all components which will be useed as views
-import { UserProfileComponent } from './main-segment/components/user-profile/user-profile.component';
 import { Four0FourComponent } from './main-segment/components/404/four0four.component';
 import { HomeComponent } from './main-segment/components/home/home.component';
 
@@ -15,10 +14,6 @@ export const appRoutes: Routes = [
         //component: the component which will be loaded into the view when the above path is queried by the client
         component: HomeComponent
         // You can add a data object with 'title', 'description', 'keywords', etc... for static seo
-    },
-    {
-        path: 'profile',
-        component: UserProfileComponent
     },
     {
         path: '**',

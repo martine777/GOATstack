@@ -6,17 +6,4 @@ Used when process.env.NODE_ENV = 'development'
 //process.env.NODE_ENV is utilized in config/config.ts
 */
 
-export const devEnv = {
-  db: {
-    uri: 'mongodb://localhost/dreams-dev',
-    options: {
-      user: '',
-      pass: ''
-    },
-    // Enable mongoose debug mode
-    debug: process.env.MONGODB_DEBUG || false
-  },
-  livereload: true,
-  seedDB: true,
-  seedFile: '../config/lib/seed'
-};
+export const devEnv = {};

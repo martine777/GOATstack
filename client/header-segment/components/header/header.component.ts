@@ -1,9 +1,6 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { select } from 'ng2-redux';
 import { Observable } from 'rxjs/Observable';
-
-import { UserActions }  from '../../../main-segment/actions/user/user.actions';
-import { UserFormActions } from '../../../main-segment/actions/userForm/userForm.actions';
 
 declare let TweenMax: any;
 declare let TimelineMax: any;
@@ -16,7 +13,7 @@ declare let Power0: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
 	
 	@ViewChild('menu') m: ElementRef;
 
@@ -34,19 +31,13 @@ export class HeaderComponent {
 
 	constructor(
 		private el: ElementRef,
-		public userActions: UserActions,
-		public userFormActions: UserFormActions,
     	private ref: ChangeDetectorRef
 		) {}
-
-	ngOnInit() {		
-	    this.userActions.getMe();
-	}
 
 	ngAfterViewInit() {
 		this.linkWidth = this.m.nativeElement.clientWidth;
 		this.buttonWidth = this.m.nativeElement.children[0].children[0].clientWidth;
-		this.bQuant = this.m.nativeElement.children[0].children.length - 1;
+		this.bQuant = this.m.nativeElement.children[0].children.length;
 		this.checkMenuWidth();
 
 		this.initMenuAnima();
@@ -88,14 +79,8 @@ export class HeaderComponent {
 		  .to(this.m.nativeElement.children[0], 0, { ease: Power0.easeNone, css: { className:'+=show' } })
 		  .to(links[0], 0, { x: 150 })
 		  .to(links[1], 0, { x: 150 })
-		  .to(links[4], 0, { x: 150 })
-		  .to(links[2], 0, { x: 150 })
-		  .to(links[3], 0, { x: 150 })
 		  .to(links[0], 0.5, { x: 0 })
-		  .to(links[1], 0.5, { x: 0 }, '-=0.3')
-		  .to(links[4], 0.5, { x: 0 }, '-=0.3')
-		  .to(links[2], 0.5, { x: 0 }, '-=0.5')
-		  .to(links[3], 0.5, { x: 0 }, '-=0.3')
+		  .to(links[1], 0.5, { x: 0 }, '-=0.3');
 	}
 
 
