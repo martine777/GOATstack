@@ -9,6 +9,6 @@
 		<a md-raised-button color="primary" routerLink='/yoloswaq69404blazeit' routerLinkActive='active'>404</a>
 	</div>
 </div>
-<button class="nav-trigger" [ngClass]="{'is-active': menuOpen, 'hidden': menuHide}" (click)="openMenu()" type="button">
+<button class="nav-trigger" *ngIf="!menuHide" [ngClass]="{'is-active': menuOpen}" (click)="openMenu()" type="button">
 	<span></span>
 </button>
