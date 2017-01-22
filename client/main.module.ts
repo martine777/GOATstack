@@ -57,17 +57,6 @@ import { HeaderComponent }                           from './header-segment/comp
 import { HomeComponent }                             from './main-segment/components/home/home.component';
 import { Four0FourComponent }                        from './main-segment/components/404/four0four.component';
 import { UserProfileComponent }                      from './main-segment/components/user-profile/user-profile.component';
-import { OceanComponent }                            from './ocean-segment/components/ocean/ocean.component';
-import { AbyssopelagicZoneComponent }                from './ocean-segment/components/abyssopelagic-zone/abyssopelagic-zone.component';
-import { BathypelagicZoneComponent }                 from './ocean-segment/components/bathypelagic-zone/bathypelagic-zone.component';
-import { EpipelagicZoneComponent }                   from './ocean-segment/components/epipelagic-zone/epipelagic-zone.component';
-import { MesopelagicZoneComponent }                  from './ocean-segment/components/mesopelagic-zone/mesopelagic-zone.component';
-import { OceanFloorComponent }                       from './ocean-segment/components/ocean-floor/ocean-floor.component';
-import { WhaleComponent }                            from './whale-segment/components/whale/whale.component';
-import { IslandComponent }                           from './whale-segment/components/island/island.component';
-import { MountainGoatComponent }                     from './whale-segment/components/mountain-goat/mountain-goat.component';
-import { SkyComponent }                              from './sky-segment/components/sky/sky.component';
-import { CloudGeneratorComponent }                   from './sky-segment/components/cloud-generator/cloud-generator.component';
 import { FooterComponent }                           from './footer-segment/components/footer/footer.component';
 // DO NOT REMOVE: template main.module imports
 
@@ -91,11 +80,9 @@ Services
 //user created services
 import { ErrorHandlerActions }                       from './main-segment/actions/error/errorHandler.actions';
 import { SEOActions }                                from './main-segment/actions/seo/seo.actions';
-import { TimeOfDayActions }                          from './main-segment/actions/time-of-day/time-of-day.actions';
 import { SocketService }                             from './main-segment/services/socketio/socketio.service';
 import { HttpIntercept }                             from './main-segment/services/auth/auth.service';
 import { UserService }                               from './main-segment/services/user/user.service';
-import { WonderService }                             from './sky-segment/services/wonder/wonder.service';
 
 //Angular and 3rd party serices
 import { Cookie }                                    from 'ng2-cookies/ng2-cookies';
@@ -107,8 +94,7 @@ Pipes
 //Declare pipes here
 */
 //User created pipes
-import { NgForHookPipe }                             from './main-segment/pipes/ngFor-hook.pipe';
-import { MarginPipe }                                from './main-segment/pipes/margin.pipe';
+
 
 //Angular and 3rd party pipes
 
@@ -164,22 +150,8 @@ NgModule
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    SkyComponent,
-    CloudGeneratorComponent,
-    IslandComponent,
-    MountainGoatComponent, 
-    WhaleComponent,
-    OceanComponent,
-    // StratosphereComponent, 
-    AbyssopelagicZoneComponent,
-    BathypelagicZoneComponent,
-    EpipelagicZoneComponent,
-    MesopelagicZoneComponent,
-    OceanFloorComponent,
     Four0FourComponent,
     UserProfileComponent,
-    NgForHookPipe,
-    MarginPipe,
     // DO NOT REMOVE: template declarations
   ],
   //providers: this object imports all necessary services into the module
@@ -191,10 +163,8 @@ NgModule
     },
     ErrorHandlerActions,
     SEOActions,
-    TimeOfDayActions,
     SocketService,
     UserService,
-    WonderService,
     Cookie,
     { provide: DevToolsExtension, useClass: DevToolsExtension }
   ],

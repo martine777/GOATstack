@@ -36,7 +36,6 @@ declare let Power0: any;
 export class AppComponent {
   //this decorator is for NgRedux. you can read more about Redux here: https://github.com/angular-redux/ng2-redux
   @select('error') error$: Observable<any>;
-  @select('timeOfDay') toda$: Observable<any>;
   @select('userForm') userForm$: Observable<any>;
 
   userSigning: boolean = false;

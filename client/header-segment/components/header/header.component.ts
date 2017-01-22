@@ -22,12 +22,12 @@ export class HeaderComponent {
 
   	@select('user') user$: Observable<any>;
   	@select('userForm') userForm$: Observable<any>;
-	@select('timeOfDay') toda$: Observable<any>;
-	menuHide: boolean = false;
+	menuHide: boolean = true;
 	menuOpen: boolean = false;
 
 	linkWidth: number;
-	sioWidth: number;
+	buttonWidth: number;
+	bQuant: number;
 	savedWidth: number;
 
 	private timeline: any;
@@ -44,9 +44,10 @@ export class HeaderComponent {
 	}
 
 	ngAfterViewInit() {
-		// this.linkWidth = this.m.nativeElement.children[0].clientWidth;
-		// this.sioWidth = this.m.nativeElement.children[1].clientWidth;
-		// this.checkMenuWidth();
+		this.linkWidth = this.m.nativeElement.clientWidth;
+		this.buttonWidth = this.m.nativeElement.children[0].children[0].clientWidth;
+		this.bQuant = this.m.nativeElement.children[0].children.length - 1;
+		this.checkMenuWidth();
 
 		this.initMenuAnima();
 	}
@@ -62,15 +63,16 @@ export class HeaderComponent {
 	}
 
 	checkMenuWidth(): void {
-		const width = this.m.nativeElement.clientWidth;
+		this.linkWidth = this.m.nativeElement.clientWidth;
 
-		if (width - this.linkWidth - this.sioWidth < 1 && this.menuHide) {
+		if (this.linkWidth - ((this.buttonWidth * this.bQuant) + (4 * this.bQuant)) < 1 && this.menuHide) {
 			this.savedWidth = window.innerWidth + 50;
 			this.menuHide = false;
 
 			this.ref.markForCheck();
 		} else if (window.innerWidth > this.savedWidth && !this.menuHide) {
 			this.menuHide = true;
+			console.log('BIG');
 
 			this.ref.markForCheck();
 		}
@@ -82,19 +84,24 @@ export class HeaderComponent {
 
 		const links = this.m.nativeElement.children[0].children; 
 
-		this.timeline		  
-		  .to(this.m.nativeElement.children[0], 0, { ease: Power0.easeNone, display: 'block' })
-		  .fromTo(links[0], 0.5, { x: 150 }, { x: 0 })
-		  .fromTo(links[1], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
-		  .fromTo(links[4], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
-		  .fromTo(links[2], 0.5, { x: 150 }, { x: 0 }, '-=0.5')
-		  .fromTo(links[3], 0.5, { x: 150 }, { x: 0 }, '-=0.3')
+		this.timeline
+		  .to(this.m.nativeElement.children[0], 0, { ease: Power0.easeNone, css: { className:'+=show' } })
+		  .to(links[0], 0, { x: 150 })
+		  .to(links[1], 0, { x: 150 })
+		  .to(links[4], 0, { x: 150 })
+		  .to(links[2], 0, { x: 150 })
+		  .to(links[3], 0, { x: 150 })
+		  .to(links[0], 0.5, { x: 0 })
+		  .to(links[1], 0.5, { x: 0 }, '-=0.3')
+		  .to(links[4], 0.5, { x: 0 }, '-=0.3')
+		  .to(links[2], 0.5, { x: 0 }, '-=0.5')
+		  .to(links[3], 0.5, { x: 0 }, '-=0.3')
 	}
 
 
 	@HostListener('window:resize', ['$event'])
 	resize(event) {
-		// this.checkMenuWidth();
+		this.checkMenuWidth();
 	}
 
 	@HostListener('document:click', ['$event'])
@@ -110,9 +117,7 @@ export class HeaderComponent {
 		if(inside){
 
 		}else{
-		    if (this.menuOpen) {
-		    	this.openMenu();
-		    }
+		    if (this.menuOpen && !this.menuHide) this.openMenu();
 		}
 	}
 
@@ -127,7 +132,7 @@ export class HeaderComponent {
 		    clicked = clicked.parentNode;
 		} while (clicked);
 		if(inside){
-	       this.openMenu();
+	       if (this.menuOpen && !this.menuHide) this.openMenu();
 		}
 	}
 }
